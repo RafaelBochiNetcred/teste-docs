@@ -30,9 +30,10 @@ URLs principais:
 
 ### Portal Redocly
 
-Instale as dependencias Node:
+Entre na pasta isolada do portal e instale as dependencias Node:
 
 ```bash
+cd redocly-docs
 npm install
 ```
 
@@ -55,12 +56,12 @@ Abra uma pre-visualizacao local do portal:
 npm run docs:preview
 ```
 
-O Redocly usa:
+O Redocly usa somente a pasta `redocly-docs/`:
 
-- `redocly.yaml`: configuracao principal do projeto.
-- `sidebars.yaml`: navegacao lateral das paginas estaticas e da referencia.
-- `docs/postman/`: paginas Markdown importadas da collection Postman.
-- `openapi/openapi.yaml`: schema gerado automaticamente pelo `drf-spectacular`.
+- `redocly-docs/redocly.yaml`: configuracao principal do projeto.
+- `redocly-docs/sidebars.yaml`: navegacao lateral das paginas estaticas e da referencia.
+- `redocly-docs/docs/postman/`: paginas Markdown importadas da collection Postman.
+- `redocly-docs/openapi/openapi.yaml`: schema gerado automaticamente pelo `drf-spectacular`.
 
 ## Endpoints do prototipo
 
@@ -77,14 +78,14 @@ Com `DEBUG=False`, o schema publico mostra apenas as actions marcadas como docum
 
 ## Como configurar no Redocly
 
-No Reunite/Redocly, conecte este repositorio e use a raiz do projeto como pasta do portal. O Redocly detecta o `redocly.yaml`.
+No Reunite/Redocly, conecte este repositorio e configure `redocly-docs/` como a pasta raiz do portal. Assim o Redocly nao tenta importar o projeto Django inteiro.
 
 Para paginas estaticas, adicione arquivos `.md` e referencie-os no `sidebars.yaml` ou no `navbar` do `redocly.yaml`.
 
 Para referencia automatica, mantenha o job de build gerando `openapi/openapi.yaml` antes do deploy:
 
 ```bash
-python manage.py spectacular --file openapi/openapi.yaml --validate
+python ../manage.py spectacular --file openapi/openapi.yaml --validate
 ```
 
 No `redocly.yaml`, a API fica registrada assim:
