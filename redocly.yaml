@@ -1,0 +1,30 @@
+extends:
+  - recommended
+
+apis:
+  netcred@v1:
+    root: ./openapi/openapi.yaml
+
+navbar:
+  items:
+    - page: index.md
+      label: Inicio
+    - group: Guias
+      items:
+        - page: docs/postman/por-onde-comecar/index.md
+          label: Por onde comecar
+        - page: docs/postman/autenticacao/index.md
+          label: Autenticacao
+        - page: docs/postman/webhook/index.md
+          label: Webhook
+    - page: openapi/openapi.yaml
+      label: Referencia da API
+
+openapi:
+  hideDownloadButton: false
+  hideTryItPanel: false
+  pathInMiddlePanel: true
+  schemasExpansionLevel: 2
+
+footer:
+  copyrightText: "Netcred API"

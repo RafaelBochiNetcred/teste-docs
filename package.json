@@ -1,0 +1,14 @@
+{
+  "name": "netcred-api-docs",
+  "private": true,
+  "scripts": {
+    "docs:openapi": "python manage.py spectacular --file openapi/openapi.yaml --validate",
+    "docs:check-config": "redocly check-config",
+    "docs:lint": "npm run docs:openapi && redocly lint netcred@v1",
+    "docs:preview": "npm run docs:openapi && redocly preview",
+    "docs:build-api": "npm run docs:openapi && redocly build-docs netcred@v1 --output redoc-static.html"
+  },
+  "devDependencies": {
+    "@redocly/cli": "^2.0.0"
+  }
+}

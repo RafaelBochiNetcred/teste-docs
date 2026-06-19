@@ -1,0 +1,1534 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Portal de documentacao da API REST da Netcred.">
+      
+      
+        <meta name="author" content="Netcred">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Transaction - Netcred API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#transaction" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../../../.." title="Netcred API" class="md-header__button md-logo" aria-label="Netcred API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Netcred API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Transaction
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Netcred API" class="md-nav__button md-logo" aria-label="Netcred API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Netcred API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conteudo Postman
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Conteudo Postman
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../por-onde-comecar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Por onde comecar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../autenticacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Autenticacao
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../instrucoes-para-homologacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Homologacao
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../instrucoes-para-producao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Producao
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../analise-de-risco/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analise de risco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../formatacao-dos-dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formatacao dos dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cobranca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cobranca
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../webhook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webhook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../consultas-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consultas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objetos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../marketplace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Marketplace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia da API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Referencia da API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../referencia/openapi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#campos-da-transaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Campos da Transaction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estados-da-transaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estados da Transaction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxos-de-estado-da-transction-por-metodo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fluxos de estado da Transction por método
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#campos-do-billinginfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Campos do BillingInfo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#campos-do-cardinfo-cartao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Campos do CardInfo (Cartão)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#campos-do-billetinfo-boleto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Campos do BilletInfo (Boleto)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#campos-do-pixinfo-pix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Campos do PixInfo (PIX)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="transaction">Transaction<a class="headerlink" href="#transaction" title="Permanent link">&para;</a></h1>
+<p><em>Origem: <code>Objetos &gt; Charge (Cobrança) &gt; Transaction</code> na collection Postman.</em></p>
+<p>A Transaction são os 'pagamentos' de fato, ela corresponde a um boleto, PIX ou pagamento de cartão.</p>
+<p>Os objetos [nome]Info acrescentam à Transaction informações mais específicas de cada método (Cartão, Pix ou Boleto). Esses objetos contém informações "repetidas" de outros, isso acontece porque um PaymentProfile, por exemplo, pode mudar o seu <code>billingAddress</code>, enquanto os dados do <code>billingInfo</code> permancem estáticos depois que uma transação é emitida/autorizada. Os objetos Info também são apresentados nesta seção.</p>
+<h3 id="campos-da-transaction">Campos da Transaction<a class="headerlink" href="#campos-da-transaction" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>Inteiro</td>
+<td>Identificador único</td>
+</tr>
+<tr>
+<td><code>uuid</code></td>
+<td>Strign</td>
+<td>Identificador único em formato UUID</td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td>Decimal</td>
+<td>Valor nominal</td>
+</tr>
+<tr>
+<td><code>paidAmount</code></td>
+<td>Decimal</td>
+<td>Valor pago  <br>  <br>Pode ser diferente do <code>amount</code> em boleto e PIX, devido a descontos ou acréscimos</td>
+</tr>
+<tr>
+<td><code>refundedAmount</code></td>
+<td>Decimal</td>
+<td>Valor estornado  <br>  <br>É menor ou igual ao valor pago</td>
+</tr>
+<tr>
+<td><code>transactionState</code></td>
+<td>String</td>
+<td>Estado da Transaction:  <br>- SCHEDULED  <br>- REJECTED  <br>- VOIDED  <br>- BILLED  <br>- EXPIRED  <br>- PAID  <br>- PARTIALLY_REFUNDED  <br>- REFUNDED  <br>- IN_ANALYSIS  <br>- MANUAL_ANALYSIS  <br>  <br>Para mais informações sobre cada uma consulte a tabela abaixo.</td>
+</tr>
+<tr>
+<td><code>method</code></td>
+<td>String</td>
+<td>Método:  <br>- BILLET: Boleto  <br>- PIX  <br>- CARD: Cartão de crédito</td>
+</tr>
+<tr>
+<td><code>installmentNumber</code></td>
+<td>Inteiro</td>
+<td><strong>Apenas para o método CARD</strong>  <br>Número de parcelas do crédito</td>
+</tr>
+<tr>
+<td><code>captureMedium</code></td>
+<td>String</td>
+<td>Método de 'captura':  <br>- ONLINE: transações criadas a partir da API  <br>- TERMINAL: transações provenientes de terminais POS ou QRCode estático</td>
+</tr>
+<tr>
+<td><code>rejectedReason</code></td>
+<td>String</td>
+<td>Motivo da recusa</td>
+</tr>
+<tr>
+<td><code>billingAt</code></td>
+<td>Date</td>
+<td>Data na qual <strong>ocorrerá</strong> a emissão/autorização</td>
+</tr>
+<tr>
+<td><code>billedAt</code></td>
+<td>Datetime</td>
+<td>Data e hora na qual <strong>ocorreu</strong> a emissão/autorização</td>
+</tr>
+<tr>
+<td><code>dueAt</code></td>
+<td>Date</td>
+<td>Data na qual <strong>ocorrerá</strong> a captura, no método CARD.  <br>  <br>Data de vencimento para BILLET e PIX.</td>
+</tr>
+<tr>
+<td><code>paidAt</code></td>
+<td>Datetime</td>
+<td>Data e hora no qual <strong>ocorreu</strong> o pagamento/captura.  <br>  <br>No caso do boleto, pode ser que a hora não esteja correta, pois apenas temos acesso à data do pagamento.</td>
+</tr>
+<tr>
+<td><code>processedAt</code></td>
+<td>Datetime</td>
+<td>Data e hora do processamento da transação, normalmente é igual/proximo a <code>paidAt</code>.  <br>  <br>Essa data é usada como base para a geração das liquidações</td>
+</tr>
+<tr>
+<td><code>voidAt</code></td>
+<td>Datetime</td>
+<td>Data e hora na qual ocorreu o cancelamento desta Transaction</td>
+</tr>
+<tr>
+<td><code>voidReason</code></td>
+<td>String</td>
+<td>Motivo do cancelamento</td>
+</tr>
+<tr>
+<td><code>manualCapture</code></td>
+<td>Boolean</td>
+<td><strong>Apenas para o método CARD</strong>  <br>Se a captura será manual, i.e. não ocorrerá de forma automática</td>
+</tr>
+<tr>
+<td><code>isDisputed</code></td>
+<td>Boolean</td>
+<td>Se a Transaction está em processo de chargeback</td>
+</tr>
+<tr>
+<td><code>attempts</code></td>
+<td>Inteiro</td>
+<td><strong>Apenas para o método CARD</strong>  <br>Numero de tentativas de autorização efetuadas</td>
+</tr>
+<tr>
+<td><code>billExpiryDate</code></td>
+<td>Date</td>
+<td><strong>Apenas para os métodos BILLET e PIX</strong>  <br>  <br>Data na qual uma emissão irá expirar após a data de vencimento (<code>dueAt</code>)  <br>  <br>Após esta data a transação passa para o estado EXPIRED</td>
+</tr>
+<tr>
+<td><code>refundMaxDate</code></td>
+<td>Date</td>
+<td>Data máxima na qual a transação poderá ser estornada</td>
+</tr>
+<tr>
+<td><code>billingCycle</code></td>
+<td>Inteiro</td>
+<td>Número sequencial da Transaction dentro da Charge</td>
+</tr>
+<tr>
+<td><code>printUrl</code></td>
+<td>String</td>
+<td><strong>Apenas para o método BILLET</strong>  <br>Link encurtado para download do boleto</td>
+</tr>
+<tr>
+<td><code>charge</code></td>
+<td>Objeto Charge</td>
+<td>Cobrança a qual esta Transaction pertence</td>
+</tr>
+<tr>
+<td><code>company</code></td>
+<td>Objeto Company</td>
+<td>Estabelecimento (<code>MERCHANT</code>) dono desta Transaction</td>
+</tr>
+<tr>
+<td><code>customer</code></td>
+<td>Objeto Customer</td>
+<td>Pagador</td>
+</tr>
+<tr>
+<td><code>paymentProfile</code></td>
+<td>Objeto PaymentProfile</td>
+<td>Informações de cobrança para a Transaction</td>
+</tr>
+<tr>
+<td><code>billetCondition</code></td>
+<td>Objeto BilletCondition</td>
+<td><strong>Apenas para o método BILLET</strong>  <br>Configurações de boleto</td>
+</tr>
+<tr>
+<td><code>pixCondition</code></td>
+<td>Objeto PixCondition</td>
+<td><strong>Apenas para o método PIX</strong>  <br>Configurações de PIX</td>
+</tr>
+<tr>
+<td><code>chargeLink</code></td>
+<td>Objeto ChargeLink</td>
+<td>ChargeLink associado, caso a Charge tenha sido criada a partid de um</td>
+</tr>
+<tr>
+<td><code>payoutRule</code></td>
+<td>Objeto PayoutRule</td>
+<td><strong>Mutuamente exclusivo com</strong> <strong><code>contract</code></strong>  <br>  <br>Split de pagamento</td>
+</tr>
+<tr>
+<td><code>contract</code></td>
+<td>Objeto Contract</td>
+<td><strong>Mutuamente exclusivo com</strong> <strong><code>payoutRule</code></strong>  <br>  <br>Contrato associado a esta cobrança. Ele vai direcionar os recebíveis para um Financiador</td>
+</tr>
+<tr>
+<td><code>cardInfo</code></td>
+<td>Objeto CardInfo</td>
+<td><strong>Apenas para o método CARD</strong>  <br>Informações específicas sobre o cartão, como a número do cartão truncado e a bandeira</td>
+</tr>
+<tr>
+<td><code>billetInfo</code></td>
+<td>Objeto BilletInfo</td>
+<td><strong>Apenas para o método BILLET</strong>  <br>Informações específicas sobre o boleto, incluindo configurações de juros e afins</td>
+</tr>
+<tr>
+<td><code>pixInfo</code></td>
+<td>Objeto PixInfo</td>
+<td><strong>Apenas para o método PIX</strong>  <br>Informações específicas sobre o PIX, incluindo configurações de juros e afins</td>
+</tr>
+<tr>
+<td><code>billingInfo</code></td>
+<td>Objeto BillingInfo</td>
+<td>Informações de cobrança, como endereço e pagador</td>
+</tr>
+</tbody>
+</table>
+<h3 id="estados-da-transaction">Estados da Transaction<a class="headerlink" href="#estados-da-transaction" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Estado</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCHEDULED</td>
+<td>Agendada, será emitida/autorizada em <code>billingAt</code></td>
+</tr>
+<tr>
+<td>REJECTED</td>
+<td><strong>Apenas para CARD</strong>  <br>Rejeitada na autorização, e.g. falta de fundos</td>
+</tr>
+<tr>
+<td>VOIDED</td>
+<td>Cancelada</td>
+</tr>
+<tr>
+<td>BILLED</td>
+<td>Emitida/Autorizada</td>
+</tr>
+<tr>
+<td>EXPIRED</td>
+<td>"Vencida", a data de vencimento (<code>dueAt</code>) passou de determinada número de dias  <br>  <br>Para todos os efeitos é equivalente a VOIDED</td>
+</tr>
+<tr>
+<td>PAID</td>
+<td>Paga</td>
+</tr>
+<tr>
+<td>PARTIALLY_REFUNDED</td>
+<td>Parcialmente estornada  <br><code>0 &lt; refundedAmount &lt; paidAmount</code></td>
+</tr>
+<tr>
+<td>REFUNDED</td>
+<td>Totalmente estornada  <br><code>refundedAmount = paidAmount</code></td>
+</tr>
+<tr>
+<td>IN_ANALYSIS</td>
+<td>Em análise de risco  <br>Irá será aprovada ou rejeitada automaticamento em até 2h</td>
+</tr>
+<tr>
+<td>MANUAL_ANALYSIS</td>
+<td>Em análise manual  <br>Netcred está verificando os dados e irá aprovar ou rejeitar em breve</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fluxos-de-estado-da-transction-por-metodo">Fluxos de estado da Transction por método<a class="headerlink" href="#fluxos-de-estado-da-transction-por-metodo" title="Permanent link">&para;</a></h3>
+<p><img src="https://content.pstmn.io/41e54e3e-3224-4d85-ad26-8ba12ba47733/Rmx1eG8gVHJhbnNhw6fDo28gQm9sZXRvLmpwZw==" alt="Boleto"></p>
+<p><img src="https://content.pstmn.io/6447f5b8-b049-4917-926e-ae07de285e29/Rmx1eG8gVHJhbnNhw6fDo28gUGl4LmpwZw==" alt="Pix"></p>
+<p><img src="https://content.pstmn.io/e0f1342a-b991-4d93-b1b6-f069d7e323a3/Rmx1eG8gVHJhbnNhw6fDo28gQ2FydMOjby5qcGc=" alt="Cartão%20de%20Crédito"></p>
+<h3 id="campos-do-billinginfo">Campos do BillingInfo<a class="headerlink" href="#campos-do-billinginfo" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>billingAddressNumber</code></td>
+<td>String</td>
+<td>Número do endereço</td>
+</tr>
+<tr>
+<td><code>billingAddressStreet</code></td>
+<td>String</td>
+<td>Rua do endereço</td>
+</tr>
+<tr>
+<td><code>billingAddressDistrict</code></td>
+<td>String</td>
+<td>Bairro/Distrito do endereço</td>
+</tr>
+<tr>
+<td><code>billingAddressCity</code></td>
+<td>String</td>
+<td>Cidade do endereço</td>
+</tr>
+<tr>
+<td><code>billingAddressState</code></td>
+<td>String</td>
+<td>Sigla do estado do endereço</td>
+</tr>
+<tr>
+<td><code>billingAddressAdditionalDetails</code></td>
+<td>String</td>
+<td>Informações adicionais do endereço, e.g. número do apartamento</td>
+</tr>
+<tr>
+<td><code>billingAddressZipCode</code></td>
+<td>String</td>
+<td>CEP do endereço, apenas números</td>
+</tr>
+<tr>
+<td><code>shippingAddressNumber</code></td>
+<td>String</td>
+<td>Número do endereço</td>
+</tr>
+<tr>
+<td><code>shippingAddressStreet</code></td>
+<td>String</td>
+<td>Rua do endereço</td>
+</tr>
+<tr>
+<td><code>shippingAddressDistrict</code></td>
+<td>String</td>
+<td>Bairro/Distrito do endereço</td>
+</tr>
+<tr>
+<td><code>shippingAddressCity</code></td>
+<td>String</td>
+<td>Cidade do endereço</td>
+</tr>
+<tr>
+<td><code>shippingAddressState</code></td>
+<td>String</td>
+<td>Sigla do estado do endereço</td>
+</tr>
+<tr>
+<td><code>shippingAddressAdditionalDetails</code></td>
+<td>String</td>
+<td>Informações adicionais do endereço, e.g. número do apartamento</td>
+</tr>
+<tr>
+<td><code>shippingAddressZipCode</code></td>
+<td>String</td>
+<td>CEP do endereço, apenas números</td>
+</tr>
+<tr>
+<td><code>customerName</code></td>
+<td>String</td>
+<td>Nome do pagador</td>
+</tr>
+<tr>
+<td><code>customerEmail</code></td>
+<td>String</td>
+<td>Email do pagador</td>
+</tr>
+<tr>
+<td><code>customerDocumentType</code></td>
+<td>String</td>
+<td>Tipo do documento do pagador (CPF ou CNPJ)</td>
+</tr>
+<tr>
+<td><code>customerDocument</code></td>
+<td>String</td>
+<td>Documetno do pagador</td>
+</tr>
+<tr>
+<td><code>customerPhone</code></td>
+<td>String</td>
+<td>Número de telefone do pagador</td>
+</tr>
+<tr>
+<td><code>customerBirthDate</code></td>
+<td>Date</td>
+<td>Data de nascimento do pagador</td>
+</tr>
+<tr>
+<td><code>customerGender</code></td>
+<td>String</td>
+<td>Gênero do pagador</td>
+</tr>
+</tbody>
+</table>
+<h3 id="campos-do-cardinfo-cartao">Campos do CardInfo (Cartão)<a class="headerlink" href="#campos-do-cardinfo-cartao" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cardNumber</code></td>
+<td>String</td>
+<td>Número do cartão truncado, e.g. "497010XXXXXX0048"</td>
+</tr>
+<tr>
+<td><code>cardMode</code></td>
+<td>String</td>
+<td>"Modo" do cartão utlizado:  <br>- CREDIT: Crédito  <br>- DEBIT: Débito (apenas de terminal)  <br>- PRE_PAID: Crédito pré-pago</td>
+</tr>
+<tr>
+<td><code>cardHolderName</code></td>
+<td>String</td>
+<td>Titular do cartão</td>
+</tr>
+<tr>
+<td><code>expiryMonth</code></td>
+<td>Inteiro</td>
+<td>Mês de expiração</td>
+</tr>
+<tr>
+<td><code>expiryYear</code></td>
+<td>Inteiro</td>
+<td>Ano de expiração</td>
+</tr>
+<tr>
+<td><code>brand</code></td>
+<td>String</td>
+<td>Bandeira do cartão  <br>  <br>É usado o formato de arranjo de pagamento, e.g. Visa Crédito = "VCC"</td>
+</tr>
+</tbody>
+</table>
+<h3 id="campos-do-billetinfo-boleto">Campos do BilletInfo (Boleto)<a class="headerlink" href="#campos-do-billetinfo-boleto" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>billetType</code></td>
+<td>String</td>
+<td>Tipo do boleto:  <br>- NORMAL: sem QRCode PIX  <br>- HYBRID: com QRCode PIX</td>
+</tr>
+<tr>
+<td><code>digitableLine</code></td>
+<td>String</td>
+<td>Linha digitável  <br>  <br>Preenchido após a emissão</td>
+</tr>
+<tr>
+<td><code>barCode</code></td>
+<td>String</td>
+<td>Código de barras  <br>  <br>Preenchido após a emissão</td>
+</tr>
+<tr>
+<td><code>txid</code></td>
+<td>String</td>
+<td>Identificador associado ao PIX do boleto  <br>  <br>Preenchido após a emissão</td>
+</tr>
+<tr>
+<td><code>pixCopyPaste</code></td>
+<td>String</td>
+<td>Código PIX copia e cola  <br>  <br>Preenchido após a emissão  <br>  <br>Obs.: para gerar a imagem do QRCode basta usar este código em uma biblioteca de QRCode</td>
+</tr>
+<tr>
+<td><code>interestType</code></td>
+<td>String</td>
+<td>Tipo do juros:  <br>- PERCENT  <br>- VALUE</td>
+</tr>
+<tr>
+<td><code>interestValue</code></td>
+<td>Decimal</td>
+<td>Valor do juros, em relação ao <code>interestType</code></td>
+</tr>
+<tr>
+<td><code>fineType</code></td>
+<td>String</td>
+<td>Tipo da multa:  <br>- PERCENT  <br>- VALUE</td>
+</tr>
+<tr>
+<td><code>fine</code></td>
+<td>Decimal</td>
+<td>Valor da multa, em relação ao <code>fineType</code></td>
+</tr>
+<tr>
+<td><code>discountType</code></td>
+<td>String</td>
+<td>Tipo do desconto:  <br>- PERCENT  <br>- VALUE</td>
+</tr>
+<tr>
+<td><code>advanceDiscountValue</code></td>
+<td>String</td>
+<td><strong>Não preenchido junto de outros campos</strong><strong><code>discount</code></strong><strong>, além de</strong> <strong><code>discountType</code></strong>  <br>  <br>Desconto aplicado por dias corridos antes do vencimento, em relação a <code>discountType</code></td>
+</tr>
+<tr>
+<td><code>discountValue1</code></td>
+<td>Decimal</td>
+<td><strong>Sempre preenchido junto de</strong> <code>discountDateDelta1</code>  <br>  <br>Valor do desconto até <code>discountDateDelta1</code> dias antes do vencimento, em relação a <code>discountType</code></td>
+</tr>
+<tr>
+<td><code>discountDateDelta1</code></td>
+<td>Integer</td>
+<td><strong>Sempre preenchido junto de</strong> <code>discountValue1</code>  <br>  <br>Número de dias antes do vencimento até o qual o desconto <code>discountValue1</code> será aplicado</td>
+</tr>
+<tr>
+<td><code>discountValue2</code></td>
+<td>Decimal</td>
+<td><strong>Sempre preenchido junto de</strong> <code>discountDateDelta2</code>  <br>  <br>Valor do desconto até <code>discountDateDelta2</code> dias antes do vencimento, em relação a <code>discountType</code></td>
+</tr>
+<tr>
+<td><code>discountDateDelta2</code></td>
+<td>Integer</td>
+<td><strong>Sempre preenchido</strong> <strong>junto de</strong> <code>discountValue2</code>  <br>  <br>Número de dias antes do vencimento até o qual o desconto <code>discountValue2</code> será aplicado</td>
+</tr>
+<tr>
+<td><code>discountValue3</code></td>
+<td>Decimal</td>
+<td><strong>Sempre preenchido junto de</strong> <code>discountDateDelta3</code>  <br>  <br>Valor do desconto até <code>discountDateDelta3</code> dias antes do vencimento, em relação a <code>discountType</code></td>
+</tr>
+<tr>
+<td><code>discountDateDelta3</code></td>
+<td>Integer</td>
+<td><strong>Sempre preenchido junto de</strong> <code>discountValue2</code>  <br>  <br>Número de dias antes do vencimento até o qual o desconto <code>discountValue3</code> será aplicado</td>
+</tr>
+</tbody>
+</table>
+<h3 id="campos-do-pixinfo-pix">Campos do PixInfo (PIX)<a class="headerlink" href="#campos-do-pixinfo-pix" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pixType</code></td>
+<td>String</td>
+<td>Tipo do PIX:  <br>- IMMEDIATE: expira em pouco tempo (gerado no ChargeLink)  <br>- WITH_DUE_DATE: Semelhante a boleto, com configurações de multa e etc (gerado no ChargeCreate)  <br>- STATIC: pagamento por QRCode estático do estabelecimento  <br>- TERMINAL: pagamento por terminal POS</td>
+</tr>
+<tr>
+<td><code>e2eid</code></td>
+<td>String</td>
+<td>Identificador único do pagametno PIX no Bacen  <br>  <br>Preenchido após o pagamento</td>
+</tr>
+<tr>
+<td><code>pixCopyPaste</code></td>
+<td>String</td>
+<td>Código PIX copia e cola  <br>  <br>Preenchido após a emissão  <br>  <br>Obs.: para gerar a imagem do QRCode basta usar este código em uma biblioteca de QRCode</td>
+</tr>
+<tr>
+<td><code>expiresAt</code></td>
+<td>Datetime</td>
+<td>Data e hora de expiração do PIX se o <code>pixType</code> for IMMEDIATE</td>
+</tr>
+<tr>
+<td><code>interestType</code></td>
+<td>String</td>
+<td><strong>Sempre preenchido junto dos campos</strong> <code>interestValueType</code>e <code>interestValue</code>  <br>  <br>Tipo do juros:  <br>- DAYS  <br>- DAYS_MONTHLY  <br>- DAYS_ANNUALLY  <br>- WORKING_DAYS  <br>- WORKING_DAYS_MONTHLY  <br>- WORKING_DAYS_ANNUALLY  <br>  <br>Para a explicação de cada um, consulte a documentação de PixCondition</td>
+</tr>
+<tr>
+<td><code>interestValueType</code></td>
+<td>String</td>
+<td><strong>Sempre preenchido junto dos campos</strong> <code>interestType</code>e <code>interestValue</code>  <br>  <br>TIpo do valor do juros: PERCENT ou VALUE</td>
+</tr>
+<tr>
+<td><code>interestValue</code></td>
+<td>Decimal</td>
+<td><strong>Sempre preenchido junto dos campos</strong> <code>interestType</code>e <code>interestValueType</code>  <br>  <br>Valor do juros, com duas casas decimais</td>
+</tr>
+<tr>
+<td><code>fineValueType</code></td>
+<td>String</td>
+<td><strong>Sempre preenchido junto do campo</strong> <code>fineValue</code>  <br>  <br>Tipo do valor da multa: PERCENT ou VALUE</td>
+</tr>
+<tr>
+<td><code>fineValue</code></td>
+<td>Decimal</td>
+<td><strong>Sempre preenchido junto do campo</strong> <code>fineValueType</code>  <br>  <br>Valor da multa</td>
+</tr>
+<tr>
+<td><code>discountType</code></td>
+<td>String</td>
+<td><strong>Sempre preenchido junto de outros campos</strong> <code>discount</code>  <br>  <br>Tipo do desconto:  <br>- FIXED_DATES  <br>- DAYS  <br>- WORKING_DAYS  <br>  <br>Para a explicação de cada um, consulte a documentação de PixCondition</td>
+</tr>
+<tr>
+<td><code>discountValueType</code></td>
+<td>String</td>
+<td>Tipo do valor do desconto: PERCENT ou VALUE</td>
+</tr>
+<tr>
+<td><code>discountValue</code></td>
+<td>Decimal</td>
+<td><strong>Sempre preenchido se</strong><code>discountType</code> for DAYS ou WORKING_DAYS  <br>  <br>Valor do desconto cobrado ao dia</td>
+</tr>
+<tr>
+<td><code>discountValue1</code></td>
+<td>Decimal</td>
+<td><strong>Sempre preenchido junto dos campos</strong> <code>discountDateDelta1</code> e <code>discountType</code>\=FIXED_DATES  <br>  <br>Valor do desconto até <code>discountDateDelta1</code> dias antes do vencimento, em relação a <code>discountType</code></td>
+</tr>
+<tr>
+<td><code>discountDateDelta1</code></td>
+<td>Inteiro</td>
+<td><strong>Sempre preenchido junto dos campos</strong> <code>discountDateDelta1</code> e <code>discountType</code>\=FIXED_DATES  <br>  <br>Número de dias antes do vencimento até o qual o desconto <code>discountValue1</code> será aplicado</td>
+</tr>
+<tr>
+<td><code>discountValue2</code></td>
+<td>Decimal</td>
+<td><strong>Sempre preenchido junto do campo</strong> <code>discountDateDelta2</code>  <br>  <br>Valor do desconto até <code>discountDateDelta2</code> dias antes do vencimento, em relação a <code>discountType</code></td>
+</tr>
+<tr>
+<td><code>discountDateDelta2</code></td>
+<td>Inteiro</td>
+<td><strong>Sempre preenchido junto do campo</strong> <code>discountValue2</code>  <br>  <br>Número de dias antes do vencimento até o qual o desconto <code>discountValue2</code> será aplicado</td>
+</tr>
+<tr>
+<td><code>discountValue3</code></td>
+<td>Decimal</td>
+<td><strong>Sempre preenchido junto do campo</strong> <code>discountDateDelta3</code>  <br>  <br>Valor do desconto até <code>discountDateDelta3</code> dias antes do vencimento, em relação a <code>discountType</code></td>
+</tr>
+<tr>
+<td><code>discountDateDelta3</code></td>
+<td>Inteiro</td>
+<td><strong>Sempre preenchido junto do campo</strong> <code>discountValue2</code>  <br>  <br>Número de dias antes do vencimento até o qual o desconto <code>discountValue3</code> será aplicado</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.sections", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
