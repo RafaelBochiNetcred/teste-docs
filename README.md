@@ -1,17 +1,14 @@
-# Test Docs - Netcred API
+# Redocly API Docs Example
 
-Projeto Django/DRF para validar uma estrategia de documentacao da Netcred API com paginas Markdown estaticas, schema OpenAPI automatico e Redocly.
+Projeto de exemplo para documentar uma API Django REST Framework com:
 
-## Objetivo
+- schema OpenAPI gerado por `drf-spectacular`;
+- ReDoc em `/api/docs/`;
+- Swagger UI em `/api/docs/swagger/`;
+- portal Redocly com paginas Markdown e referencia OpenAPI;
+- filtro para publicar no OpenAPI apenas actions marcadas com `@documented_endpoint` quando `DEBUG=False`.
 
-- Gerar schema OpenAPI 3 com `drf-spectacular`.
-- Publicar um portal Redocly com paginas estaticas e referencia OpenAPI automatica.
-- Documentar o recurso de Webhook com campos, eventos suportados, exemplos, headers de entrega e respostas de erro/sucesso.
-- Ocultar do schema publico endpoints auxiliares ou campos internos que nao devem ser consumidos por integradores.
-
-## Como rodar
-
-### API Django
+## Como rodar a API
 
 ```bash
 python3 -m venv .venv
@@ -23,75 +20,53 @@ python manage.py runserver
 
 URLs principais:
 
-- API: `http://127.0.0.1:8000/api/webhooks/`
-- OpenAPI schema: `http://127.0.0.1:8000/api/schema/`
+- OpenAPI: `http://127.0.0.1:8000/api/schema/`
 - ReDoc: `http://127.0.0.1:8000/api/docs/`
-- Swagger UI, apenas com `DEBUG=True`: `http://127.0.0.1:8000/api/docs/swagger/`
+- Swagger UI: `http://127.0.0.1:8000/api/docs/swagger/`
 
-### Portal Redocly
+## DEBUG e schema publico
 
-Entre na pasta isolada do portal e instale as dependencias Node:
+Com `DEBUG=False`, o hook `webhooks.schema_hooks.only_documented_endpoints` remove do OpenAPI tudo que nao estiver marcado com `@documented_endpoint`.
+
+Exemplo:
+
+```python
+@documented_endpoint
+@extend_schema(**WEBHOOK_LIST_SCHEMA)
+def list(self, request, *args, **kwargs):
+    return super().list(request, *args, **kwargs)
+```
+
+Para ligar o modo debug:
+
+```bash
+DJANGO_DEBUG=True python manage.py runserver
+```
+
+No modo debug, o schema mostra todos os endpoints registrados. A rota auxiliar de empresas, `/api/companies/`, tambem fica disponivel apenas nesse modo.
+
+## Como rodar o Redocly
 
 ```bash
 cd redocly-docs
 npm install
-```
-
-Gere o schema OpenAPI usado pelo Redocly:
-
-```bash
 npm run docs:openapi
-```
-
-Valide a configuracao e o schema:
-
-```bash
-npm run docs:check-config
-npm run docs:lint
-```
-
-Abra uma pre-visualizacao local do portal:
-
-```bash
 npm run docs:preview
 ```
 
-O Redocly usa somente a pasta `redocly-docs/`:
+Arquivos principais:
 
-- `redocly-docs/redocly.yaml`: configuracao principal do projeto.
-- `redocly-docs/sidebars.yaml`: navegacao lateral das paginas estaticas e da referencia.
-- `redocly-docs/docs/postman/`: paginas Markdown importadas da collection Postman.
-- `redocly-docs/openapi/openapi.yaml`: schema gerado automaticamente pelo `drf-spectacular`.
+- `redocly-docs/redocly.yaml`: configuracao do portal.
+- `redocly-docs/sidebars.yaml`: menu lateral.
+- `redocly-docs/index.md`: pagina inicial.
+- `redocly-docs/docs/postman/`: paginas Markdown.
+- `redocly-docs/openapi/openapi.yaml`: schema usado pela referencia da API.
 
-## Endpoints do prototipo
+## Paginas mantidas
 
-- `GET /api/webhooks/`: lista assinaturas.
-- `POST /api/webhooks/`: cria uma assinatura.
-- `GET /api/webhooks/{id}/`: detalha uma assinatura.
-- `PATCH /api/webhooks/{id}/`: atualiza parcialmente uma assinatura.
-- `DELETE /api/webhooks/{id}/`: remove uma assinatura.
-- `POST /api/webhooks/{id}/ping/`: simula o envio de uma notificacao de ping.
-
-O app tambem possui `/api/companies/` e `/api/teste/` para facilitar testes locais.
-Com `DEBUG=True`, o schema mostra todos os endpoints.
-Com `DEBUG=False`, o schema publico mostra apenas as actions marcadas como documentadas.
-
-## Como configurar no Redocly
-
-No Reunite/Redocly, conecte este repositorio e configure `redocly-docs/` como a pasta raiz do portal. Assim o Redocly nao tenta importar o projeto Django inteiro.
-
-Para paginas estaticas, adicione arquivos `.md` e referencie-os no `sidebars.yaml` ou no `navbar` do `redocly.yaml`.
-
-Para referencia automatica, mantenha o job de build gerando `openapi/openapi.yaml` antes do deploy:
-
-```bash
-python ../manage.py spectacular --file openapi/openapi.yaml --validate
-```
-
-No `redocly.yaml`, a API fica registrada assim:
-
-```yaml
-apis:
-  netcred@v1:
-    root: ./openapi/openapi.yaml
-```
+- Inicio
+- Visao geral
+- Por onde comecar
+- Autenticacao
+- Webhook, incluindo suas paginas filhas
+- Referencia da API

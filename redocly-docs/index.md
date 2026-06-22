@@ -8,9 +8,8 @@ Nosso objetivo com a documentação é facilitar o processo de integração para
 
 ## Conteudo
 
+- [Visão geral](docs/postman/index.md)
 - [Por onde começar](docs/postman/por-onde-comecar/index.md)
 - [Autenticação](docs/postman/autenticacao/index.md)
-- [Homologação](docs/postman/instrucoes-para-homologacao.md)
-- [Produção](docs/postman/instrucoes-para-producao.md)
 - [Webhook](docs/postman/webhook/index.md)
 - [Referência da API](openapi/openapi.yaml)

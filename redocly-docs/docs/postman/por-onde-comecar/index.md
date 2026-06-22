@@ -25,7 +25,7 @@ Authorization: JWT <token>
 
 O token tem validade de **24 horas**. Após esse período, repita a autenticação para obter um novo token.
 
-Veja mais detalhes na seção [Autenticação](https://docs.netcredbrasil.com.br/#1dedcb09-858e-4e2a-a14e-8088c77beee6).
+Veja mais detalhes na seção [Autenticação](../autenticacao/index.md).
 
 ---
 
@@ -33,7 +33,7 @@ Veja mais detalhes na seção [Autenticação](https://docs.netcredbrasil.com.br
 
 A grande maioria das chamadas da API exige que você informe um `companyId`. Use a query `getCompanies` para listar todas as empresas disponíveis ao seu usuário e obtenha os IDs necessários.
 
-Veja mais detalhes na seção [Consultas (queries)](https://docs.netcredbrasil.com.br/#a99c1768-da1c-4ab0-9f00-59b6bb986a88).
+Veja mais detalhes na [Referência da API](../../../openapi/openapi.yaml).
 
 ---
 
@@ -48,7 +48,7 @@ Com o `companyId` em mãos, você já pode criar cobranças. A API suporta três
 - **PIX**
     
 
-→ Veja exemplos e parâmetros na seção [Cobrança](https://docs.netcredbrasil.com.br/#697fd1da-97d8-4fd0-a419-4c732943ba56).
+→ Veja exemplos e parâmetros na [Referência da API](../../../openapi/openapi.yaml).
 
 ---
 
@@ -58,22 +58,22 @@ Após criar uma cobrança, uma ou mais transações são geradas. Existem duas f
 
 **5a. Consulta ativa (polling)**  
 Consulte o estado atual da transação a qualquer momento usando a query de transações.  
-→ Seção [Consultas (queries)](https://docs.netcredbrasil.com.br/#a99c1768-da1c-4ab0-9f00-59b6bb986a88).
+→ Consulte a [Referência da API](../../../openapi/openapi.yaml).
 
 **5b. Webhook ✓ Recomendado**  
 Configure um Webhook para receber notificações automáticas em tempo real sempre que o status de uma transação mudar. Elimina a necessidade de polling e garante menor latência na atualização do seu sistema.  
-→ Seção [Webhook](https://docs.netcredbrasil.com.br/#98cb2769-5773-49c5-b358-7bd3e945b367).
+→ Seção [Webhook](../webhook/index.md).
 
 ---
 
-> **Importante —** [Máquina de estados da Transação](https://docs.netcredbrasil.com.br/#be815284-351a-4184-8ac2-0992087e5971) 
+> **Importante —** acompanhe os estados da transação pela referência da API ou pelos eventos recebidos via Webhook.
   
 
 ---
 
 ### Leitura complementar
 
-Caso não tenha experiência com GraphQL, recomendamos explorar a seção [Conceitos de GraphQL](https://docs.netcredbrasil.com.br/#4b66213a-e938-4438-88f6-46188292d64c) para entender a estrutura das consultas e mutations antes de avançar para chamadas mais complexas.
+Caso não tenha experiência com GraphQL, recomendamos explorar a seção [Conceitos de GraphQL](conceitos-de-graphql.md) para entender a estrutura das consultas e mutations antes de avançar para chamadas mais complexas.
 
 ### Suporte
 

@@ -2,7 +2,7 @@
   "name": "netcred-api-docs",
   "private": true,
   "scripts": {
-    "docs:openapi": "python3 ../manage.py spectacular --file openapi/openapi.yaml --validate && python3 ../scripts/split_openapi_by_tag.py openapi/openapi.yaml Webhooks openapi/webhooks.yaml && DJANGO_DEBUG=True python3 ../manage.py spectacular --file /tmp/netcred-openapi-debug.yaml && python3 ../scripts/split_openapi_by_tag.py /tmp/netcred-openapi-debug.yaml companies openapi/company.yaml",
+    "docs:openapi": "python3 ../manage.py spectacular --file openapi/openapi.yaml --validate",
     "docs:check-config": "redocly check-config",
     "docs:lint": "npm run docs:openapi && redocly lint netcred@v1",
     "docs:preview": "npm run docs:openapi && redocly preview",

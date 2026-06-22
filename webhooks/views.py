@@ -16,7 +16,6 @@ from .schema import documented_endpoint
 from .serializers import CompanySerializer, WebhookSerializer
 
 
-@documented_endpoint
 @extend_schema(tags=["Company"])
 class CompanyViewSet(viewsets.ModelViewSet):
     """Endpoint auxiliar para cadastrar empresas no prototipo local."""
@@ -30,12 +29,14 @@ class CompanyViewSet(viewsets.ModelViewSet):
 
 @extend_schema(tags=["Webhooks"])
 class WebhookViewSet(viewsets.ModelViewSet):
-    queryset = Webhook.objects.select_related(
-        "company").prefetch_related("events")
+    queryset = Webhook.objects.select_related("company").prefetch_related("events")
     serializer_class = WebhookSerializer
     http_method_names = ["get", "post", "patch", "delete", "head", "options"]
-    filter_backends = [DjangoFilterBackend,
-                       filters.SearchFilter, filters.OrderingFilter]
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    ]
     filterset_fields = {
         "id": ["exact"],
         "is_active": ["exact"],
@@ -89,11 +90,7 @@ class WebhookViewSet(viewsets.ModelViewSet):
             f"Ping notification sent successfully to {webhook.target_url} "
             f"with event {event}."
         )
-        return Response({"result": result, "status_code": "200"}, status=status.HTTP_200_OK)
-
-
-class TesteViewSet(viewsets.ModelViewSet):
-    queryset = Webhook.objects.select_related(
-        "company").prefetch_related("events")
-    serializer_class = WebhookSerializer
-    http_method_names = ["get", "post", "patch", "delete", "head", "options"]
+        return Response(
+            {"result": result, "status_code": "200"},
+            status=status.HTTP_200_OK,
+        )

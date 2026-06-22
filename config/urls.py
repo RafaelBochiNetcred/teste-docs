@@ -8,13 +8,14 @@ from drf_spectacular.views import (
 )
 from rest_framework.routers import DefaultRouter
 
-from webhooks.views import CompanyViewSet, TesteViewSet, WebhookViewSet
+from webhooks.views import CompanyViewSet, WebhookViewSet
 
 
 router = DefaultRouter()
 router.register("webhooks", WebhookViewSet, basename="webhook")
-router.register("teste", TesteViewSet, basename="teste")
-router.register("companies", CompanyViewSet, basename="company")
+
+if settings.DEBUG:
+    router.register("companies", CompanyViewSet, basename="company")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -25,13 +26,9 @@ urlpatterns = [
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
+    path(
+        "api/docs/swagger/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui",
+    ),
 ]
-
-if settings.DEBUG:
-    urlpatterns += [
-        path(
-            "api/docs/swagger/",
-            SpectacularSwaggerView.as_view(url_name="schema"),
-            name="swagger-ui",
-        ),
-    ]

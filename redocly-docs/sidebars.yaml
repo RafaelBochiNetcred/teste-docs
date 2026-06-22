@@ -2,19 +2,42 @@
   label: Inicio
 - page: docs/postman/index.md
   label: Visao geral
-- page: docs/postman/por-onde-comecar/index.md
-  label: Por onde comecar
+- group: Por onde comecar
+  expanded: true
+  items:
+    - page: docs/postman/por-onde-comecar/index.md
+      label: Guia inicial
+    - page: docs/postman/por-onde-comecar/conceitos-de-graphql.md
+      label: Conceitos de GraphQL
 - page: docs/postman/autenticacao/index.md
   label: Autenticacao
 - group: Webhook
   expanded: true
   items:
     - page: docs/postman/webhook/index.md
-      label: Descrição
-    - page: openapi/webhooks.yaml
-      label: Chamadas
+      label: Visao geral
+    - group: Requisicoes enviadas
+      expanded: true
+      items:
+        - page: docs/postman/webhook/requisicoes-enviadas/index.md
+          label: Introducao
+        - group: Formatos
+          expanded: true
+          items:
+            - page: docs/postman/webhook/requisicoes-enviadas/formatos/index.md
+              label: Visao geral
+            - page: docs/postman/webhook/requisicoes-enviadas/formatos/charge.md
+              label: Charge
+            - page: docs/postman/webhook/requisicoes-enviadas/formatos/paymentprofile.md
+              label: PaymentProfile
+            - page: docs/postman/webhook/requisicoes-enviadas/formatos/payout.md
+              label: Payout
+            - page: docs/postman/webhook/requisicoes-enviadas/formatos/registrationprocess.md
+              label: RegistrationProcess
+            - page: docs/postman/webhook/requisicoes-enviadas/formatos/transaction.md
+              label: Transaction
 - group: Referencia da API
   expanded: true
   items:
     - page: openapi/openapi.yaml
-      label: OpenAPI completo
+      label: OpenAPI

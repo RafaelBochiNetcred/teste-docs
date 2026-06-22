@@ -6,7 +6,7 @@ Webhook permitem que o seu sistema receba notificações sobre as cobranças em 
 
 ## Referência técnica
 
-- [Ver endpoints REST de Webhooks na referência Redocly](../../../openapi/webhooks.yaml)
+- [Ver endpoints REST de Webhooks na referência Redocly](../../../openapi/openapi.yaml#tag/Webhooks)
 - [Baixar schema OpenAPI completo](../../../openapi/openapi.yaml)
 
 Eventos para Webhook e o momento de sua chamada:
@@ -106,4 +106,4 @@ Eventos para Webhook e o momento de sua chamada:
 ## Nesta secao
 
 - [Requisições enviadas](requisicoes-enviadas/index.md)
-- [Referência REST de Webhooks](../../../openapi/webhooks.yaml)
+- [Referência REST de Webhooks](../../../openapi/openapi.yaml#tag/Webhooks)
