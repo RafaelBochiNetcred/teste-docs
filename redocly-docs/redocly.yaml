@@ -4,6 +4,10 @@ extends:
 apis:
   netcred@v1:
     root: ./openapi/openapi.yaml
+  webhooks@v1:
+    root: ./openapi/webhooks.yaml
+  company@v1:
+    root: ./openapi/company.yaml
 
 navbar:
   items:

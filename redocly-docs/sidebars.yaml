@@ -16,6 +16,8 @@
   items:
     - page: docs/webhook/index.md
       label: Visao geral
+    - page: openapi/webhooks.yaml
+      label: Referencia REST
     - group: Requisicoes enviadas
       expanded: true
       items:
@@ -40,4 +42,6 @@
   expanded: true
   items:
     - page: openapi/openapi.yaml
-      label: OpenAPI
+      label: OpenAPI completo
+    - page: openapi/company.yaml
+      label: Company

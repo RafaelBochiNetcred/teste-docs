@@ -62,24 +62,39 @@ paths:
           - TRANSACTION_UPDATE
           - TRANSACTION_VOID
           - WEBHOOK_PING
-        description: |-
-          * `ANY` - Any event
+        description: '* `ANY` - Any event
+
           * `CHARGE_CREATE` - Charge created
+
           * `CHARGE_UPDATE` - Charge updated
+
           * `CHARGE_VOID` - Charge voided
+
           * `TRANSACTION_CREATE` - Transaction created
+
           * `TRANSACTION_CAPTURE` - Transaction captured
+
           * `TRANSACTION_EXPIRED` - Transaction expired
+
           * `TRANSACTION_UPDATE` - Transaction updated
+
           * `TRANSACTION_VOID` - Transaction voided
+
           * `TRANSACTION_REFUND` - Transaction refunded
+
           * `TRANSACTION_DISPUTE` - Transaction disputed
+
           * `TRANSACTION_AUTHORIZE` - Transaction authorized
+
           * `PAYMENT_PROFILE_TOKENIZE` - Payment profile tokenized
+
           * `PAYMENT_PROFILE_UPDATE` - Payment profile updated
+
           * `PAYMENT_PROFILE_DELETE` - Payment profile deleted
+
           * `PAYMENT_PROFILE_EXPIRING` - Payment profile close to expiry
-          * `WEBHOOK_PING` - Webhook ping
+
+          * `WEBHOOK_PING` - Webhook ping'
       - in: query
         name: events__event_type__in
         schema:
@@ -351,24 +366,39 @@ components:
       - PAYMENT_PROFILE_EXPIRING
       - WEBHOOK_PING
       type: string
-      description: |-
-        * `ANY` - Any event
+      description: '* `ANY` - Any event
+
         * `CHARGE_CREATE` - Charge created
+
         * `CHARGE_UPDATE` - Charge updated
+
         * `CHARGE_VOID` - Charge voided
+
         * `TRANSACTION_CREATE` - Transaction created
+
         * `TRANSACTION_CAPTURE` - Transaction captured
+
         * `TRANSACTION_EXPIRED` - Transaction expired
+
         * `TRANSACTION_UPDATE` - Transaction updated
+
         * `TRANSACTION_VOID` - Transaction voided
+
         * `TRANSACTION_REFUND` - Transaction refunded
+
         * `TRANSACTION_DISPUTE` - Transaction disputed
+
         * `TRANSACTION_AUTHORIZE` - Transaction authorized
+
         * `PAYMENT_PROFILE_TOKENIZE` - Payment profile tokenized
+
         * `PAYMENT_PROFILE_UPDATE` - Payment profile updated
+
         * `PAYMENT_PROFILE_DELETE` - Payment profile deleted
+
         * `PAYMENT_PROFILE_EXPIRING` - Payment profile close to expiry
-        * `WEBHOOK_PING` - Webhook ping
+
+        * `WEBHOOK_PING` - Webhook ping'
     PaginatedWebhookList:
       type: object
       required:
@@ -565,11 +595,21 @@ components:
       name: sessionid
 tags:
 - name: Webhooks
-  description: |-
-    Gerenciamento das assinaturas usadas para receber notificacoes de eventos da plataforma Netcred.
+  description: 'Gerenciamento das assinaturas usadas para receber notificacoes de
+    eventos da plataforma Netcred.
 
-    Uma assinatura define a URL do integrador, a empresa vinculada, os eventos que disparam notificacoes e a chave usada para assinar o payload quando necessario.
 
-    Eventos suportados: `ANY`, `CHARGE_CREATE`, `CHARGE_UPDATE`, `CHARGE_VOID`, `TRANSACTION_CREATE`, `TRANSACTION_CAPTURE`, `TRANSACTION_EXPIRED`, `TRANSACTION_UPDATE`, `TRANSACTION_VOID`, `TRANSACTION_REFUND`, `TRANSACTION_DISPUTE`, `TRANSACTION_AUTHORIZE`, `PAYMENT_PROFILE_TOKENIZE`, `PAYMENT_PROFILE_UPDATE`, `PAYMENT_PROFILE_DELETE`, `PAYMENT_PROFILE_EXPIRING` e `WEBHOOK_PING`.
+    Uma assinatura define a URL do integrador, a empresa vinculada, os eventos que
+    disparam notificacoes e a chave usada para assinar o payload quando necessario.
 
-    Headers enviados pela Netcred ao chamar a URL do integrador: `Content-Type: application/json`, `User-Agent`, `X-Netcred-Event`, `X-Netcred-Delivery` e `X-Netcred-Signature` quando `secret_key` foi configurada.
+
+    Eventos suportados: `ANY`, `CHARGE_CREATE`, `CHARGE_UPDATE`, `CHARGE_VOID`, `TRANSACTION_CREATE`,
+    `TRANSACTION_CAPTURE`, `TRANSACTION_EXPIRED`, `TRANSACTION_UPDATE`, `TRANSACTION_VOID`,
+    `TRANSACTION_REFUND`, `TRANSACTION_DISPUTE`, `TRANSACTION_AUTHORIZE`, `PAYMENT_PROFILE_TOKENIZE`,
+    `PAYMENT_PROFILE_UPDATE`, `PAYMENT_PROFILE_DELETE`, `PAYMENT_PROFILE_EXPIRING`
+    e `WEBHOOK_PING`.
+
+
+    Headers enviados pela Netcred ao chamar a URL do integrador: `Content-Type: application/json`,
+    `User-Agent`, `X-Netcred-Event`, `X-Netcred-Delivery` e `X-Netcred-Signature`
+    quando `secret_key` foi configurada.'

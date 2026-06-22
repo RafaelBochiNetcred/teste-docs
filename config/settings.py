@@ -5,7 +5,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-test-docs"
-DEBUG = os.environ.get("DJANGO_DEBUG", "False").lower() in {
+DEBUG = os.environ.get("DJANGO_DEBUG", "True").lower() in {
     "1",
     "true",
     "yes",
