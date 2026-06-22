@@ -4,6 +4,10 @@ extends:
 apis:
   netcred@v1:
     root: ./openapi/openapi.yaml
+  company@v1:
+    root: ./openapi/company.yaml
+  webhooks@v1:
+    root: ./openapi/webhooks.yaml
 
 navbar:
   items:
@@ -19,6 +23,10 @@ navbar:
           label: Webhook
     - page: openapi/openapi.yaml
       label: Referencia da API
+    - page: openapi/webhooks.yaml
+      label: Webhooks REST
+    - page: openapi/company.yaml
+      label: Company REST
 
 openapi:
   hideDownloadButton: false

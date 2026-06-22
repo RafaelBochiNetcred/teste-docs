@@ -4,7 +4,7 @@ from webhooks.serializers import WebhookSerializer
 
 
 WEBHOOK_LIST_SCHEMA = {
-    "summary": "Lista assinaturas de webhook aaa"
+    "summary": "Lista assinaturas de webhook",
     "description": (
         "Retorna as assinaturas cadastradas. Permite filtrar por empresa, "
         "status, URL de destino e eventos assinados. Use este endpoint para "

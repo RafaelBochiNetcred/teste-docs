@@ -28,4 +28,8 @@
   expanded: true
   items:
     - page: openapi/openapi.yaml
-      label: OpenAPI
+      label: OpenAPI completo
+    - page: openapi/webhooks.yaml
+      label: Webhooks
+    - page: openapi/company.yaml
+      label: Company

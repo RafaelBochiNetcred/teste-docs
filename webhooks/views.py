@@ -16,6 +16,8 @@ from .schema import documented_endpoint
 from .serializers import CompanySerializer, WebhookSerializer
 
 
+@documented_endpoint
+@extend_schema(tags=["Company"])
 class CompanyViewSet(viewsets.ModelViewSet):
     """Endpoint auxiliar para cadastrar empresas no prototipo local."""
 

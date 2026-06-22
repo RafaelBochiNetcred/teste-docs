@@ -1,10 +1,15 @@
+import os
 from pathlib import Path
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-test-docs"
-DEBUG = False
+DEBUG = os.environ.get("DJANGO_DEBUG", "False").lower() in {
+    "1",
+    "true",
+    "yes",
+}
 ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [

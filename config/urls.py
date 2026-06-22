@@ -12,9 +12,9 @@ from webhooks.views import CompanyViewSet, TesteViewSet, WebhookViewSet
 
 
 router = DefaultRouter()
-router.register("companies", CompanyViewSet, basename="company")
 router.register("webhooks", WebhookViewSet, basename="webhook")
 router.register("teste", TesteViewSet, basename="teste")
+router.register("companies", CompanyViewSet, basename="company")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
