@@ -19,7 +19,7 @@ Execute a mutation `tokenAuth` com o seu usuário e senha. A resposta contém um
 ```
 Authorization: JWT <token>
 
- ```
+```
 
 O token tem validade de **24 horas**. Após esse período, repita a autenticação para obter um novo token.
 
@@ -31,7 +31,7 @@ Veja mais detalhes na seção [Autenticação](../autenticacao/index.md).
 
 A grande maioria das chamadas da API exige que você informe um `companyId`. Use a query `getCompanies` para listar todas as empresas disponíveis ao seu usuário e obtenha os IDs necessários.
 
-Veja mais detalhes na [Referência da API](../../../openapi/openapi.yaml).
+Veja mais detalhes na [Referência da API](../../openapi/openapi.yaml).
 
 ---
 
@@ -40,13 +40,10 @@ Veja mais detalhes na [Referência da API](../../../openapi/openapi.yaml).
 Com o `companyId` em mãos, você já pode criar cobranças. A API suporta três modalidades:
 
 - **Boleto bancário**
-    
 - **Cartão de crédito**
-    
 - **PIX**
-    
 
-→ Veja exemplos e parâmetros na [Referência da API](../../../openapi/openapi.yaml).
+→ Veja exemplos e parâmetros na [Referência da API](../../openapi/openapi.yaml).
 
 ---
 
@@ -56,7 +53,7 @@ Após criar uma cobrança, uma ou mais transações são geradas. Existem duas f
 
 **5a. Consulta ativa (polling)**  
 Consulte o estado atual da transação a qualquer momento usando a query de transações.  
-→ Consulte a [Referência da API](../../../openapi/openapi.yaml).
+→ Consulte a [Referência da API](../../openapi/openapi.yaml).
 
 **5b. Webhook ✓ Recomendado**  
 Configure um Webhook para receber notificações automáticas em tempo real sempre que o status de uma transação mudar. Elimina a necessidade de polling e garante menor latência na atualização do seu sistema.  
@@ -65,7 +62,6 @@ Configure um Webhook para receber notificações automáticas em tempo real semp
 ---
 
 > **Importante —** acompanhe os estados da transação pela referência da API ou pelos eventos recebidos via Webhook.
-  
 
 ---
 

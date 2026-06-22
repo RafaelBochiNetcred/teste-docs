@@ -7,7 +7,7 @@ Este projeto demonstra uma documentacao Redocly combinando paginas Markdown com 
 - [Por onde comecar](por-onde-comecar/index.md)
 - [Autenticacao](autenticacao/index.md)
 - [Webhook](webhook/index.md)
-- [Referencia da API](../../openapi/openapi.yaml)
+- [Referencia da API](../openapi/openapi.yaml)
 
 ## Referencias da API
 
