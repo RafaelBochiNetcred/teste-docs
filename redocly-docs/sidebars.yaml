@@ -6,16 +6,6 @@
   label: Por onde comecar
 - page: docs/postman/autenticacao/index.md
   label: Autenticacao
-- page: docs/postman/instrucoes-para-homologacao.md
-  label: Homologacao
-- page: docs/postman/instrucoes-para-producao.md
-  label: Producao
-- page: docs/postman/analise-de-risco.md
-  label: Analise de risco
-- page: docs/postman/formatacao-dos-dados.md
-  label: Formatacao dos dados
-- page: docs/postman/cobranca/index.md
-  label: Cobranca
 - group: Webhook
   expanded: true
   items:
@@ -23,12 +13,6 @@
       label: Descrição
     - page: openapi/webhooks.yaml
       label: Chamadas
-- page: docs/postman/consultas-queries/index.md
-  label: Consultas
-- page: docs/postman/objetos/index.md
-  label: Objetos
-- page: docs/postman/marketplace/index.md
-  label: Marketplace
 - group: Referencia da API
   expanded: true
   items:
