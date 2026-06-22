@@ -1,7 +1,5 @@
 # Requisições enviadas
 
-_Origem: `Webhook > Requisições enviadas` na collection Postman._
-
 Aqui definimos os formatos dos Webhooks que são enviados
 
 Existem 3 tipos de formato: Charge, Transaction e PaymentProfile

@@ -59,7 +59,7 @@ Arquivos principais:
 - `redocly-docs/redocly.yaml`: configuracao do portal.
 - `redocly-docs/sidebars.yaml`: menu lateral.
 - `redocly-docs/index.md`: pagina inicial.
-- `redocly-docs/docs/postman/`: paginas Markdown.
+- `redocly-docs/docs/`: paginas Markdown.
 - `redocly-docs/openapi/openapi.yaml`: schema usado pela referencia da API.
 
 ## Paginas mantidas

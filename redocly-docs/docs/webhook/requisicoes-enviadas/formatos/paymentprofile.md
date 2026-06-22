@@ -1,7 +1,5 @@
 # PaymentProfile
 
-_Origem: `Webhook > Requisições enviadas > Formatos > PaymentProfile` na collection Postman._
-
 ### Formato PaymentProfilePayload
 
 | Nome | Exemplo | Descrição |

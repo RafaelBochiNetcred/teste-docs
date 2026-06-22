@@ -1,7 +1,5 @@
 # Charge
 
-_Origem: `Webhook > Requisições enviadas > Formatos > Charge` na collection Postman._
-
 ### Formato ChargePayload
 
 | Nome | Exemplo | Descrição |

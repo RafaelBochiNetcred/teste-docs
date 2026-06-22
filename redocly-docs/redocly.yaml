@@ -9,15 +9,15 @@ navbar:
   items:
     - page: index.md
       label: Inicio
-    - page: docs/postman/index.md
+    - page: docs/index.md
       label: Visao geral
     - group: Guias
       items:
-        - page: docs/postman/por-onde-comecar/index.md
+        - page: docs/por-onde-comecar/index.md
           label: Por onde comecar
-        - page: docs/postman/autenticacao/index.md
+        - page: docs/autenticacao/index.md
           label: Autenticacao
-        - page: docs/postman/webhook/index.md
+        - page: docs/webhook/index.md
           label: Webhook
     - page: openapi/openapi.yaml
       label: Referencia da API

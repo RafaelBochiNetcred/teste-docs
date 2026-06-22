@@ -1,7 +1,5 @@
 # Conceitos de GraphQL
 
-_Origem: `Por onde começar > Conceitos de GraphQL` na collection Postman._
-
 **1.Consultas (Queries):**  
 Quando você precisa acessar informações específicas na nossa API, você utilizará consultas. Por exemplo, você pode querer buscar transações recentes, verificar boletos vencidos ou obter detalhes sobre um pagamento em particular. Cada consulta é cuidadosamente projetada para fornecer os dados necessários para suas operações.
 

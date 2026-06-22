@@ -1,7 +1,5 @@
 # Webhook
 
-_Origem: `Webhook` na collection Postman._
-
 Webhook permitem que o seu sistema receba notificações sobre as cobranças em nossa API. Eles são úteis, por exemplo, para atualizar o status de um boleto que foi pago.
 
 ## Referência técnica

@@ -1,7 +1,5 @@
 # Transaction
 
-_Origem: `Webhook > Requisições enviadas > Formatos > Transaction` na collection Postman._
-
 ### Formato TransactionPayload
 
 | Nome | Exemplo | Descrição |

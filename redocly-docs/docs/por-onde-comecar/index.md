@@ -1,7 +1,5 @@
 # Por onde começar
 
-_Origem: `Por onde começar` na collection Postman._
-
 Esta seção descreve o caminho mínimo para realizar sua primeira integração com a API Netcred. Siga os passos abaixo na ordem apresentada.
 
 <img src="https://content.pstmn.io/828fe784-1e09-47c9-879b-0e6a175ce10d/aW1hZ2UucG5n" width="882" height="660">
