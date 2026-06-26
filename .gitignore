@@ -5,3 +5,5 @@ db.sqlite3
 /openapi.yaml
 node_modules/
 redoc-static.html
+docusaurus-docs/build/
+docusaurus-docs/.docusaurus/

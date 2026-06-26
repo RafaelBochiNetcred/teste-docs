@@ -1,0 +1,77 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Netcred API",
+  "description": "Documentacao para clientes e integradores da API Netcred.",
+  "colors": {
+    "primary": "#1663d9"
+  },
+  "appearance": {
+    "default": "system"
+  },
+  "api": {
+    "openapi": "openapi/openapi.yaml",
+    "playground": {
+      "display": "interactive"
+    },
+    "examples": {
+      "defaults": "all",
+      "languages": ["curl", "javascript", "python"]
+    }
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Netcred",
+        "href": "https://netcredbrasil.com.br/"
+      }
+    ]
+  },
+  "navigation": {
+    "groups": [
+      {
+        "group": "Inicio",
+        "pages": [
+          "intro",
+          "index",
+          "por-onde-comecar/index",
+          "por-onde-comecar/conceitos-de-graphql",
+          "autenticacao/index"
+        ]
+      },
+      {
+        "group": "Webhook",
+        "pages": [
+          "webhook/index",
+          {
+            "group": "Requisicoes enviadas",
+            "pages": [
+              "webhook/requisicoes-enviadas/index",
+              {
+                "group": "Formatos",
+                "pages": [
+                  "webhook/requisicoes-enviadas/formatos/index",
+                  "webhook/requisicoes-enviadas/formatos/charge",
+                  "webhook/requisicoes-enviadas/formatos/paymentprofile",
+                  "webhook/requisicoes-enviadas/formatos/payout",
+                  "webhook/requisicoes-enviadas/formatos/registrationprocess",
+                  "webhook/requisicoes-enviadas/formatos/transaction"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "group": "Referencia da API",
+        "pages": ["api-reference"],
+        "openapi": "openapi/openapi.yaml"
+      }
+    ]
+  },
+  "footer": {
+    "socials": {
+      "website": "https://netcredbrasil.com.br/"
+    }
+  }
+}

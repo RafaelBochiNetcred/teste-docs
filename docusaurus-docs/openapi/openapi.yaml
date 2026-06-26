@@ -1,0 +1,575 @@
+openapi: 3.0.3
+info:
+  title: Netcred API REST
+  version: 0.1.0
+  description: Schema OpenAPI 3 gerado automaticamente com drf-spectacular para documentar
+    endpoints REST consumidos por clientes e integradores. Esta primeira versao publica
+    cobre o recurso de Webhooks e e renderizada com ReDoc.
+paths:
+  /api/webhooks/:
+    get:
+      operationId: webhooks_list
+      description: Retorna as assinaturas cadastradas. Permite filtrar por empresa,
+        status, URL de destino e eventos assinados. Use este endpoint para auditar
+        quais destinos estao configurados para receber notificacoes.
+      summary: Lista assinaturas de webhook
+      parameters:
+      - in: query
+        name: company__marketplace_id
+        schema:
+          type: string
+      - in: query
+        name: company__marketplace_id__in
+        schema:
+          type: array
+          items:
+            type: string
+        description: Valores múltiplos podem ser separados por vírgulas.
+        explode: false
+        style: form
+      - in: query
+        name: company_id
+        schema:
+          type: integer
+      - in: query
+        name: company_id__in
+        schema:
+          type: array
+          items:
+            type: integer
+        description: Valores múltiplos podem ser separados por vírgulas.
+        explode: false
+        style: form
+      - in: query
+        name: events__event_type
+        schema:
+          type: string
+          enum:
+          - ANY
+          - CHARGE_CREATE
+          - CHARGE_UPDATE
+          - CHARGE_VOID
+          - PAYMENT_PROFILE_DELETE
+          - PAYMENT_PROFILE_EXPIRING
+          - PAYMENT_PROFILE_TOKENIZE
+          - PAYMENT_PROFILE_UPDATE
+          - TRANSACTION_AUTHORIZE
+          - TRANSACTION_CAPTURE
+          - TRANSACTION_CREATE
+          - TRANSACTION_DISPUTE
+          - TRANSACTION_EXPIRED
+          - TRANSACTION_REFUND
+          - TRANSACTION_UPDATE
+          - TRANSACTION_VOID
+          - WEBHOOK_PING
+        description: |-
+          * `ANY` - Any event
+          * `CHARGE_CREATE` - Charge created
+          * `CHARGE_UPDATE` - Charge updated
+          * `CHARGE_VOID` - Charge voided
+          * `TRANSACTION_CREATE` - Transaction created
+          * `TRANSACTION_CAPTURE` - Transaction captured
+          * `TRANSACTION_EXPIRED` - Transaction expired
+          * `TRANSACTION_UPDATE` - Transaction updated
+          * `TRANSACTION_VOID` - Transaction voided
+          * `TRANSACTION_REFUND` - Transaction refunded
+          * `TRANSACTION_DISPUTE` - Transaction disputed
+          * `TRANSACTION_AUTHORIZE` - Transaction authorized
+          * `PAYMENT_PROFILE_TOKENIZE` - Payment profile tokenized
+          * `PAYMENT_PROFILE_UPDATE` - Payment profile updated
+          * `PAYMENT_PROFILE_DELETE` - Payment profile deleted
+          * `PAYMENT_PROFILE_EXPIRING` - Payment profile close to expiry
+          * `WEBHOOK_PING` - Webhook ping
+      - in: query
+        name: events__event_type__in
+        schema:
+          type: string
+        description: Filtra webhooks que assinam um ou mais eventos separados por
+          virgula.
+      - in: query
+        name: id
+        schema:
+          type: integer
+      - in: query
+        name: is_active
+        schema:
+          type: boolean
+      - in: query
+        name: mask_user_agent
+        schema:
+          type: boolean
+      - name: ordering
+        required: false
+        in: query
+        description: Qual campo usar ao ordenar os resultados.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: Um número de página dentro do conjunto de resultados paginado.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: Um termo de busca.
+        schema:
+          type: string
+      - in: query
+        name: target_url__icontains
+        schema:
+          type: string
+      tags:
+      - Webhooks
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedWebhookList'
+              examples:
+                ListaPaginada:
+                  value:
+                    count: 123
+                    next: http://api.example.org/accounts/?page=4
+                    previous: http://api.example.org/accounts/?page=2
+                    results:
+                    - count: 1
+                      next: null
+                      previous: null
+                      results:
+                      - id: 10
+                        name: ERP Financeiro
+                        target_url: https://integrador.example.com/netcred/webhooks
+                        subscribed_events:
+                        - CHARGE_CREATE
+                        - TRANSACTION_CAPTURE
+                        company: 1
+                        company_name: Empresa Exemplo
+                        is_active: true
+                        mask_user_agent: false
+                        created: '2026-06-19T10:00:00-03:00'
+                        modified: '2026-06-19T10:00:00-03:00'
+                  summary: Lista paginada
+          description: Lista paginada de assinaturas de webhook.
+  /api/webhooks/{id}/:
+    patch:
+      operationId: webhooks_partial_update
+      description: Atualiza os campos enviados. Quando `events` e informado, a lista
+        anterior de eventos assinados e substituida pela nova lista.
+      summary: Atualiza parcialmente uma assinatura de webhook
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este webhook.
+        required: true
+      tags:
+      - Webhooks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedWebhookRequest'
+            examples:
+              AtivarWebhookETrocarEventos:
+                value:
+                  is_active: true
+                  events:
+                  - ANY
+                summary: Ativar webhook e trocar eventos
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedWebhookRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedWebhookRequest'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: Assinatura atualizada com sucesso.
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookValidationError'
+          description: Erro de validacao dos campos enviados.
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookError'
+          description: Assinatura nao encontrada.
+    delete:
+      operationId: webhooks_destroy
+      description: Exclui definitivamente a assinatura e seus eventos vinculados.
+        Apos a remocao, novas notificacoes deixam de ser enviadas para a URL configurada.
+      summary: Remove uma assinatura de webhook
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este webhook.
+        required: true
+      tags:
+      - Webhooks
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: Assinatura removida com sucesso.
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookError'
+          description: Assinatura nao encontrada.
+    get:
+      operationId: webhooks_retrieve
+      description: Retorna configuracoes, empresa vinculada e eventos assinados. A
+        chave secreta nao e exposta na resposta publica.
+      summary: Detalha uma assinatura de webhook
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este webhook.
+        required: true
+      tags:
+      - Webhooks
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: Assinatura encontrada.
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookError'
+              examples:
+                NaoEncontrado:
+                  value:
+                    detail: Not found.
+                  summary: Nao encontrado
+          description: Assinatura nao encontrada.
+  /api/webhooks/{id}/ping/:
+    post:
+      operationId: webhooks_ping_create
+      description: Simula o envio de uma notificacao de ping para validar se o destino
+        configurado esta apto a receber payloads. No projeto real esta acao chama
+        a task `send_webhook_request`; aqui retornamos uma resposta deterministica
+        para documentacao e testes locais. A chamada de webhook gerada pelo ping usa
+        os mesmos headers documentados no recurso.
+      summary: Envia ping para uma assinatura de webhook
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este webhook.
+        required: true
+      tags:
+      - Webhooks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookPingResponse'
+              examples:
+                PingEnviado:
+                  value:
+                    result: Ping notification sent successfully!
+                    status_code: '200'
+                  summary: Ping enviado
+          description: Ping simulado com sucesso.
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookError'
+          description: Assinatura nao encontrada.
+components:
+  schemas:
+    EventsEnum:
+      enum:
+      - ANY
+      - CHARGE_CREATE
+      - CHARGE_UPDATE
+      - CHARGE_VOID
+      - TRANSACTION_CREATE
+      - TRANSACTION_CAPTURE
+      - TRANSACTION_EXPIRED
+      - TRANSACTION_UPDATE
+      - TRANSACTION_VOID
+      - TRANSACTION_REFUND
+      - TRANSACTION_DISPUTE
+      - TRANSACTION_AUTHORIZE
+      - PAYMENT_PROFILE_TOKENIZE
+      - PAYMENT_PROFILE_UPDATE
+      - PAYMENT_PROFILE_DELETE
+      - PAYMENT_PROFILE_EXPIRING
+      - WEBHOOK_PING
+      type: string
+      description: |-
+        * `ANY` - Any event
+        * `CHARGE_CREATE` - Charge created
+        * `CHARGE_UPDATE` - Charge updated
+        * `CHARGE_VOID` - Charge voided
+        * `TRANSACTION_CREATE` - Transaction created
+        * `TRANSACTION_CAPTURE` - Transaction captured
+        * `TRANSACTION_EXPIRED` - Transaction expired
+        * `TRANSACTION_UPDATE` - Transaction updated
+        * `TRANSACTION_VOID` - Transaction voided
+        * `TRANSACTION_REFUND` - Transaction refunded
+        * `TRANSACTION_DISPUTE` - Transaction disputed
+        * `TRANSACTION_AUTHORIZE` - Transaction authorized
+        * `PAYMENT_PROFILE_TOKENIZE` - Payment profile tokenized
+        * `PAYMENT_PROFILE_UPDATE` - Payment profile updated
+        * `PAYMENT_PROFILE_DELETE` - Payment profile deleted
+        * `PAYMENT_PROFILE_EXPIRING` - Payment profile close to expiry
+        * `WEBHOOK_PING` - Webhook ping
+    PaginatedWebhookList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
+    PatchedWebhookRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+          description: Nome opcional para identificar a assinatura de webhook.
+          maxLength: 255
+        target_url:
+          type: string
+          format: uri
+          minLength: 1
+          description: URL que recebera o payload do evento. Sao aceitos os esquemas
+            http, https, awssqs e gcpubsub.
+          maxLength: 255
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventsEnum'
+          writeOnly: true
+          description: Lista de eventos que a assinatura deve receber. Use ANY para
+            receber todos os eventos disponíveis
+        company:
+          type: integer
+          description: ID da empresa dona da assinatura de webhook.
+        is_active:
+          type: boolean
+          description: Define se a assinatura esta ativa e apta a receber notificacoes.
+        secret_key:
+          type: string
+          writeOnly: true
+          description: Chave usada para assinar o payload enviado ao integrador. No
+            ambiente real, deve ser armazenada e exibida com cuidado.
+          maxLength: 255
+        mask_user_agent:
+          type: boolean
+          description: Define se o user agent padrao deve ser mascarado no envio.
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          nullable: true
+          description: Nome opcional para identificar a assinatura de webhook.
+          maxLength: 255
+        target_url:
+          type: string
+          format: uri
+          description: URL que recebera o payload do evento. Sao aceitos os esquemas
+            http, https, awssqs e gcpubsub.
+          maxLength: 255
+        subscribed_events:
+          type: array
+          items:
+            type: string
+          readOnly: true
+          description: Eventos atualmente vinculados a assinatura.
+        company:
+          type: integer
+          description: ID da empresa dona da assinatura de webhook.
+        company_name:
+          type: string
+          readOnly: true
+          description: Nome da empresa vinculada ao webhook.
+        is_active:
+          type: boolean
+          description: Define se a assinatura esta ativa e apta a receber notificacoes.
+        mask_user_agent:
+          type: boolean
+          description: Define se o user agent padrao deve ser mascarado no envio.
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - company
+      - company_name
+      - created
+      - id
+      - modified
+      - subscribed_events
+      - target_url
+    WebhookError:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: Mensagem de erro retornada quando a requisicao nao pode ser
+            processada ou o recurso solicitado nao existe.
+      required:
+      - detail
+    WebhookPingResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Mensagem informando se a notificacao de ping foi simulada com
+            sucesso.
+        status_code:
+          type: string
+          description: Codigo de status associado a simulacao do ping.
+      required:
+      - result
+      - status_code
+    WebhookRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+          description: Nome opcional para identificar a assinatura de webhook.
+          maxLength: 255
+        target_url:
+          type: string
+          format: uri
+          minLength: 1
+          description: URL que recebera o payload do evento. Sao aceitos os esquemas
+            http, https, awssqs e gcpubsub.
+          maxLength: 255
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventsEnum'
+          writeOnly: true
+          description: Lista de eventos que a assinatura deve receber. Use ANY para
+            receber todos os eventos disponíveis
+        company:
+          type: integer
+          description: ID da empresa dona da assinatura de webhook.
+        is_active:
+          type: boolean
+          description: Define se a assinatura esta ativa e apta a receber notificacoes.
+        secret_key:
+          type: string
+          writeOnly: true
+          description: Chave usada para assinar o payload enviado ao integrador. No
+            ambiente real, deve ser armazenada e exibida com cuidado.
+          maxLength: 255
+        mask_user_agent:
+          type: boolean
+          description: Define se o user agent padrao deve ser mascarado no envio.
+      required:
+      - company
+      - events
+      - target_url
+    WebhookValidationError:
+      type: object
+      properties:
+        field_name:
+          type: array
+          items:
+            type: string
+          description: Lista de mensagens de validacao agrupadas por campo. O nome
+            real do campo aparece como chave no payload retornado pela API.
+      required:
+      - field_name
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
+tags:
+- name: Webhooks
+  description: |-
+    Gerenciamento das assinaturas usadas para receber notificacoes de eventos da plataforma Netcred.
+
+    Uma assinatura define a URL do integrador, a empresa vinculada, os eventos que disparam notificacoes e a chave usada para assinar o payload quando necessario.
+
+    Eventos suportados: `ANY`, `CHARGE_CREATE`, `CHARGE_UPDATE`, `CHARGE_VOID`, `TRANSACTION_CREATE`, `TRANSACTION_CAPTURE`, `TRANSACTION_EXPIRED`, `TRANSACTION_UPDATE`, `TRANSACTION_VOID`, `TRANSACTION_REFUND`, `TRANSACTION_DISPUTE`, `TRANSACTION_AUTHORIZE`, `PAYMENT_PROFILE_TOKENIZE`, `PAYMENT_PROFILE_UPDATE`, `PAYMENT_PROFILE_DELETE`, `PAYMENT_PROFILE_EXPIRING` e `WEBHOOK_PING`.
+
+    Headers enviados pela Netcred ao chamar a URL do integrador: `Content-Type: application/json`, `User-Agent`, `X-Netcred-Event`, `X-Netcred-Delivery` e `X-Netcred-Signature` quando `secret_key` foi configurada.

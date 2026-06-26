@@ -1,0 +1,29 @@
+{
+  "name": "netcred-api-docusaurus-docs",
+  "private": true,
+  "scripts": {
+    "docs:openapi": "cd .. && DJANGO_DEBUG=False ./.venv/bin/python manage.py spectacular --file docusaurus-docs/openapi/openapi.yaml --validate",
+    "start": "npm run docs:openapi && docusaurus start",
+    "build": "npm run docs:openapi && docusaurus build",
+    "serve": "docusaurus serve",
+    "clear": "docusaurus clear"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.10.1",
+    "@docusaurus/preset-classic": "3.10.1",
+    "@mdx-js/react": "^3.1.1",
+    "clsx": "latest",
+    "prism-react-renderer": "latest",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "redocusaurus": "^2.5.0"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.10.1",
+    "@docusaurus/tsconfig": "3.10.1",
+    "typescript": "latest"
+  },
+  "engines": {
+    "node": ">=18.0"
+  }
+}
