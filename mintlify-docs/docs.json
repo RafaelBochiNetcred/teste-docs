@@ -28,19 +28,19 @@
     ]
   },
   "navigation": {
-    "groups": [
+    "anchors": [
       {
-        "group": "Inicio",
+        "anchor": "Ínicio",
+        "icon": "book-open",
         "pages": [
           "intro",
-          "index",
           "por-onde-comecar/index",
           "por-onde-comecar/conceitos-de-graphql",
           "autenticacao/index"
         ]
       },
       {
-        "group": "Webhook",
+        "anchor": "Webhook",
         "pages": [
           "webhook/index",
           {
@@ -61,11 +61,6 @@
             ]
           }
         ]
-      },
-      {
-        "group": "Referencia da API",
-        "pages": ["api-reference"],
-        "openapi": "openapi/openapi.yaml"
       }
     ],
     "tabs": [
