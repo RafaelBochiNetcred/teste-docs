@@ -28,19 +28,48 @@
     ]
   },
   "navigation": {
-    "anchors": [
+    "groups": [
       {
-        "anchor": "Ínicio",
-        "icon": "book-open",
+        "group": "Comece aqui",
         "pages": [
           "intro",
+          "index",
           "por-onde-comecar/index",
-          "por-onde-comecar/conceitos-de-graphql",
           "autenticacao/index"
         ]
       },
       {
-        "anchor": "API Reference",
+        "group": "Conceitos",
+        "pages": [
+          "por-onde-comecar/conceitos-de-graphql"
+        ]
+      },
+      {
+        "group": "Webhook",
+        "pages": [
+          "webhook/index",
+          {
+            "group": "Requisicoes enviadas",
+            "pages": [
+              "webhook/requisicoes-enviadas/index",
+              {
+                "group": "Formatos",
+                "pages": [
+                  "webhook/requisicoes-enviadas/formatos/index",
+                  "webhook/requisicoes-enviadas/formatos/charge",
+                  "webhook/requisicoes-enviadas/formatos/paymentprofile",
+                  "webhook/requisicoes-enviadas/formatos/payout",
+                  "webhook/requisicoes-enviadas/formatos/registrationprocess",
+                  "webhook/requisicoes-enviadas/formatos/transaction"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "group": "Referencia da API",
+        "pages": ["api-reference"],
         "openapi": "openapi/openapi.yaml"
       }
     ]
