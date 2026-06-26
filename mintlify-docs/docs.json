@@ -67,6 +67,12 @@
         "pages": ["api-reference"],
         "openapi": "openapi/openapi.yaml"
       }
+    ],
+    "tabs": [
+      {
+        "tab": "API Reference",
+        "openapi": "openapi/openapi.yaml"
+      }
     ]
   },
   "footer": {
