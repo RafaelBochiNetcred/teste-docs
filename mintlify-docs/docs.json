@@ -40,32 +40,7 @@
         ]
       },
       {
-        "anchor": "Webhook",
-        "pages": [
-          "webhook/index",
-          {
-            "group": "Requisicoes enviadas",
-            "pages": [
-              "webhook/requisicoes-enviadas/index",
-              {
-                "group": "Formatos",
-                "pages": [
-                  "webhook/requisicoes-enviadas/formatos/index",
-                  "webhook/requisicoes-enviadas/formatos/charge",
-                  "webhook/requisicoes-enviadas/formatos/paymentprofile",
-                  "webhook/requisicoes-enviadas/formatos/payout",
-                  "webhook/requisicoes-enviadas/formatos/registrationprocess",
-                  "webhook/requisicoes-enviadas/formatos/transaction"
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "tabs": [
-      {
-        "tab": "API Reference",
+        "anchor": "API Reference",
         "openapi": "openapi/openapi.yaml"
       }
     ]
