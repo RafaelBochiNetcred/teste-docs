@@ -1,3 +1,7 @@
+---
+title: Autenticação
+---
+
 # Autenticação
 
 A autenticação ocorre por meio do token JWT, mais detalhes sobre este formato em [JWT Docs](https://jwt.io/).
