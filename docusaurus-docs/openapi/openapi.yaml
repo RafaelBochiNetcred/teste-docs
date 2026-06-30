@@ -194,33 +194,6 @@ paths:
                     detail: Not found.
                   summary: Nao encontrado
           description: Assinatura nao encontrada.
-    delete:
-      operationId: webhooks_destroy
-      description: Exclui definitivamente a assinatura e seus eventos vinculados.
-        Apos a remocao, novas notificacoes deixam de ser enviadas para a URL configurada.
-      summary: Remove uma assinatura de webhook
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: Um valor inteiro único que identifica este webhook.
-        required: true
-      tags:
-      - Webhooks
-      security:
-      - cookieAuth: []
-      - basicAuth: []
-      - {}
-      responses:
-        '204':
-          description: Assinatura removida com sucesso.
-        '404':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/WebhookError'
-          description: Assinatura nao encontrada.
     patch:
       operationId: webhooks_partial_update
       description: Atualiza os campos enviados. Quando `events` e informado, a lista
@@ -270,6 +243,33 @@ paths:
               schema:
                 $ref: '#/components/schemas/WebhookValidationError'
           description: Erro de validacao dos campos enviados.
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookError'
+          description: Assinatura nao encontrada.
+    delete:
+      operationId: webhooks_destroy
+      description: Exclui definitivamente a assinatura e seus eventos vinculados.
+        Apos a remocao, novas notificacoes deixam de ser enviadas para a URL configurada.
+      summary: Remove uma assinatura de webhook
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este webhook.
+        required: true
+      tags:
+      - Webhooks
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: Assinatura removida com sucesso.
         '404':
           content:
             application/json:

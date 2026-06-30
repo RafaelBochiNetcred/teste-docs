@@ -93,7 +93,7 @@ SPECTACULAR_SETTINGS = {
         "webhooks.schema_hooks.only_documented_endpoints",
     ],
     "COMPONENT_SPLIT_REQUEST": True,
-    "SORT_OPERATIONS": False,
+    "SORT_OPERATIONS": True,
     "TAGS": [
         {
             "name": "Webhooks",
