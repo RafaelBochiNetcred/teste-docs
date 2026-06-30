@@ -213,33 +213,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/WebhookError'
           description: Assinatura nao encontrada.
-    delete:
-      operationId: webhooks_destroy
-      description: Exclui definitivamente a assinatura e seus eventos vinculados.
-        Apos a remocao, novas notificacoes deixam de ser enviadas para a URL configurada.
-      summary: Remove uma assinatura de webhook
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: Um valor inteiro único que identifica este webhook.
-        required: true
-      tags:
-      - Webhooks
-      security:
-      - cookieAuth: []
-      - basicAuth: []
-      - {}
-      responses:
-        '204':
-          description: Assinatura removida com sucesso.
-        '404':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/WebhookError'
-          description: Assinatura nao encontrada.
     get:
       operationId: webhooks_retrieve
       description: Retorna configuracoes, empresa vinculada e eventos assinados. A
@@ -275,6 +248,33 @@ paths:
                   value:
                     detail: Not found.
                   summary: Nao encontrado
+          description: Assinatura nao encontrada.
+    delete:
+      operationId: webhooks_destroy
+      description: Exclui definitivamente a assinatura e seus eventos vinculados.
+        Apos a remocao, novas notificacoes deixam de ser enviadas para a URL configurada.
+      summary: Remove uma assinatura de webhook
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este webhook.
+        required: true
+      tags:
+      - Webhooks
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: Assinatura removida com sucesso.
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookError'
           description: Assinatura nao encontrada.
   /api/webhooks/{id}/ping/:
     post:

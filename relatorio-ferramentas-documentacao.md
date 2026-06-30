@@ -122,6 +122,54 @@ O fluxo recomendado pode incluir:
 
 Como o Docusaurus nao e focado em governanca de API, a validacao do contrato precisa ser adicionada explicitamente ao pipeline.
 
+### Esforco estimado para CI/CD
+
+Para avaliar se o Docusaurus compensa financeiramente, e importante comparar o custo evitado de uma ferramenta paga com o tempo necessario para montar e manter a esteira.
+
+Considerando Redocly Pro como referencia de custo, com 7 colaboradores a US$ 10 por usuario/mes, o custo seria:
+
+| Base de comparacao | Custo |
+| --- | ---: |
+| 7 usuarios x US$ 10/mes | US$ 70/mes |
+| Custo anual | US$ 840/ano |
+
+Esse valor cresce linearmente conforme mais pessoas precisam de acesso. Com 9 colaboradores, por exemplo, o custo passa para US$ 90/mes ou US$ 1.080/ano.
+
+Para o Docusaurus, o custo direto de licenca e zero, mas existe custo de implementacao e manutencao. Um levantamento realista de tarefas seria:
+
+| Tarefa | Estimativa |
+| --- | ---: |
+| Gerar `openapi.yaml` automaticamente no pipeline | 0,5 a 1 dia |
+| Configurar build do Docusaurus em CI | 0,5 dia |
+| Validar OpenAPI com Redocly CLI, Spectral ou ferramenta equivalente | 0,5 a 1 dia |
+| Configurar deploy estatico, por exemplo S3 + CloudFront | 1 a 2 dias |
+| Configurar dominio, HTTPS, cache e invalidacao de CDN | 0,5 a 1 dia |
+| Configurar preview por pull request, se necessario | 1 a 2 dias |
+| Configurar validacao de links e arquivos quebrados | 0,5 dia |
+| Criar processo de changelog | 0,5 a 1 dia |
+| Documentar processo interno de publicacao | 0,5 dia |
+| Ajustes finos de navegacao, sidebar e renderizacao do OpenAPI | 1 a 2 dias |
+
+Estimativa total:
+
+| Escopo | Tempo estimado |
+| --- | ---: |
+| CI/CD minimo | 2 a 4 dias |
+| CI/CD completo com deploy, validacoes e preview | 5 a 9 dias |
+| Manutencao recorrente | 0,5 a 2 dias por mes, dependendo da instabilidade dos plugins e mudancas no schema |
+
+O ponto financeiro principal e que o custo anual de Redocly Pro para 7 pessoas, US$ 840/ano, pode ser menor que o custo de alguns dias de engenharia. Se um dia de trabalho de engenharia custar mais que US$ 420, dois dias de implementacao ja equivalem aproximadamente a um ano de Redocly Pro para 7 usuarios.
+
+Com isso, Docusaurus so paga melhor quando pelo menos uma destas condicoes for verdadeira:
+
+- o time valoriza muito controle total sobre hospedagem, layout e pipeline;
+- ja existe infraestrutura padrao para sites estaticos na AWS;
+- o time quer evitar custo recorrente por assento no longo prazo;
+- poucas pessoas vao manter a documentacao;
+- a documentacao sera simples e a referencia OpenAPI nao exigira muitos recursos avancados.
+
+Se o objetivo for reduzir tempo de implementacao, diminuir manutencao e entregar uma experiencia de API mais pronta para clientes, a economia de licenca do Docusaurus pode nao compensar. Nesse caso, pagar US$ 70/mes para 7 pessoas pode ser justificavel, principalmente se evitar uma ou duas semanas de setup e manutencao futura.
+
 ### Changelog
 
 Pode ser implementado com paginas Markdown, blog do Docusaurus ou uma secao especifica de releases. A flexibilidade e boa, mas o processo precisa ser definido pelo time.

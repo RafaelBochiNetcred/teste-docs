@@ -1,0 +1,9 @@
+extends:
+  - recommended
+
+rules:
+  no-empty-servers: off
+  no-path-trailing-slash: off
+  info-license: warn
+  operation-4xx-response: warn
+  no-invalid-media-type-examples: warn

@@ -1,0 +1,91 @@
+name: Docusaurus Docs
+
+on:
+  pull_request:
+    paths:
+      - "docusaurus-docs/**"
+      - "config/**"
+      - "webhooks/**"
+      - "requirements.txt"
+      - "manage.py"
+      - ".github/workflows/docusaurus-docs.yml"
+  push:
+    branches:
+      - master
+    paths:
+      - "docusaurus-docs/**"
+      - "config/**"
+      - "webhooks/**"
+      - "requirements.txt"
+      - "manage.py"
+      - ".github/workflows/docusaurus-docs.yml"
+
+jobs:
+  validate-and-build:
+    name: Validate schema and build docs
+    runs-on: ubuntu-latest
+
+    # Necessario apenas quando o deploy AWS estiver habilitado com OIDC.
+    # permissions:
+    #   id-token: write
+    #   contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: docusaurus-docs/package-lock.json
+
+      - name: Install Python dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Install docs dependencies
+        working-directory: docusaurus-docs
+        run: npm ci
+
+      - name: Generate OpenAPI schema
+        run: DJANGO_DEBUG=False python manage.py spectacular --file docusaurus-docs/openapi/openapi.yaml --validate
+
+      - name: Check generated schema is committed
+        run: git diff --exit-code docusaurus-docs/openapi/openapi.yaml
+
+      - name: Lint OpenAPI schema
+        run: npx @redocly/cli@latest lint --config docusaurus-docs/redocly.yaml docusaurus-docs/openapi/openapi.yaml
+
+      - name: Build Docusaurus
+        working-directory: docusaurus-docs
+        run: npm run build:ci
+
+      # Deploy AWS comentado para servir como exemplo.
+      # Para habilitar:
+      # 1. Criar bucket S3 privado para o build estatico.
+      # 2. Criar distribuicao CloudFront apontando para o bucket via OAC.
+      # 3. Criar certificado ACM e associar ao CloudFront.
+      # 4. Criar role IAM assumida por OIDC pelo GitHub Actions.
+      # 5. Definir os vars/secrets usados abaixo.
+
+      # - name: Configure AWS credentials
+      #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      #   uses: aws-actions/configure-aws-credentials@v4
+      #   with:
+      #     role-to-assume: ${{ secrets.AWS_DOCS_DEPLOY_ROLE_ARN }}
+      #     aws-region: ${{ vars.AWS_REGION }}
+
+      # - name: Deploy docs to S3
+      #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      #   run: aws s3 sync docusaurus-docs/build s3://${{ vars.AWS_DOCS_BUCKET }} --delete
+
+      # - name: Invalidate CloudFront cache
+      #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      #   run: aws cloudfront create-invalidation --distribution-id ${{ vars.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
