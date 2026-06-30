@@ -158,61 +158,6 @@ paths:
                   summary: Lista paginada
           description: Lista paginada de assinaturas de webhook.
   /api/webhooks/{id}/:
-    patch:
-      operationId: webhooks_partial_update
-      description: Atualiza os campos enviados. Quando `events` e informado, a lista
-        anterior de eventos assinados e substituida pela nova lista.
-      summary: Atualiza parcialmente uma assinatura de webhook
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: Um valor inteiro único que identifica este webhook.
-        required: true
-      tags:
-      - Webhooks
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedWebhookRequest'
-            examples:
-              AtivarWebhookETrocarEventos:
-                value:
-                  is_active: true
-                  events:
-                  - ANY
-                summary: Ativar webhook e trocar eventos
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedWebhookRequest'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedWebhookRequest'
-      security:
-      - cookieAuth: []
-      - basicAuth: []
-      - {}
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Webhook'
-          description: Assinatura atualizada com sucesso.
-        '400':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/WebhookValidationError'
-          description: Erro de validacao dos campos enviados.
-        '404':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/WebhookError'
-          description: Assinatura nao encontrada.
     get:
       operationId: webhooks_retrieve
       description: Retorna configuracoes, empresa vinculada e eventos assinados. A
@@ -270,6 +215,61 @@ paths:
       responses:
         '204':
           description: Assinatura removida com sucesso.
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookError'
+          description: Assinatura nao encontrada.
+    patch:
+      operationId: webhooks_partial_update
+      description: Atualiza os campos enviados. Quando `events` e informado, a lista
+        anterior de eventos assinados e substituida pela nova lista.
+      summary: Atualiza parcialmente uma assinatura de webhook
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este webhook.
+        required: true
+      tags:
+      - Webhooks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedWebhookRequest'
+            examples:
+              AtivarWebhookETrocarEventos:
+                value:
+                  is_active: true
+                  events:
+                  - ANY
+                summary: Ativar webhook e trocar eventos
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedWebhookRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedWebhookRequest'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: Assinatura atualizada com sucesso.
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookValidationError'
+          description: Erro de validacao dos campos enviados.
         '404':
           content:
             application/json:
